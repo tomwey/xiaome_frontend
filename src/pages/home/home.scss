@@ -1,223 +1,86 @@
 page-home {
-    .banners {
-        ion-slide {
-            background-color: rgb(247, 247, 247);
-            // height: 150px;
-            // margin: 0;
-        }
-        img {
+    .salary-caption {
+        background: color($colors, primary);
+        padding: 10px;
+
+        h1,h2,h3,p {
             margin: 0;
             padding: 0;
-            border: 0;
-            display: block;
-            max-width: 100%;
-            width: 100%;
+            color: white;
+            font-family: 'PingFang SC';
         }
-
-        .swiper-pagination-bullet-active {
-            background-color: color($colors, primary);
-        }
-    }
-
-    .box {
-        width: 100%;
-        background: white;
-        margin-top: 6px;
-        padding: 15px;
-        h2 {
-            padding: 0;
-            margin: 0;
-            font-size: 14px;
-            font-weight: normal;
-            color: #333;
-            border-bottom: 0.55px solid #e6e6e6;
-            padding-bottom: 15px;
-        }
-        .more {
-            display: block;
-            float: right;
+        .unit {
             font-size: 12px;
-            color: #999;
-        }
-    }
-
-    .votes {
-        margin-top: 10px;
-        table {
-            width: 100%;
-            td {
-                vertical-align: bottom;
-                font-size: 14px;
-                // background: red;
-                padding: 10px 5px;
-            }
-
-            .base {
-                width: 65%;
-            }
-
-            .tickets {
-                width: 25%;
-                font-size: 18px;
-                text-align: right;
-                color: rgb(149,149,149);
-            }
-
-            .percent {
-                width: 10%;
-                font-size: 18px;
-                text-align: right;
-                color: rgb(149,149,149);
-            }
-
-            .unit {
-                font-size: 10px;
-            }
-        }
-
-        h4 {
-            font-size: 14px;
-            font-weight: normal;
-            color: #333;
-        }
-
-        .progressbar {
-            margin-top: 8px;
-            width: 100%;
-            // border: 0.55px solid #e6e6e6;
-            height: 6px;
-            background: rgb(221,221,221);
-        }
-
-        .progressbar-inner {
-            // width: 40%;
-            height: 6px;
-            // height: 100%;
-            // margin-top: 1px;
-            background: color($colors, primary);
-        }
-    }
-
-    .features {
-        background: white;
-        margin-top: 6px;
-        // padding: 15px;
-
-        ion-row,ion-col {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        // ion-col {
-        //     border-right: 0.55px solid #e6e6e6;
-        //     &:last-child {
-        //         border-right: 0;
-        //     }
-        // }
-        .feature {
-            text-align: center;
-            padding: 15px;
-            h4 {
-                font-size: 14px;
-                font-weight: normal;
-                color: #666;
-                margin: 0;
-                padding: 0;
-                // margin-bottom: 5px;
-            }
-            img {
-                max-width: 22px;
-                margin-bottom: 5px;
-            }
-            // p {
-            //     margin: 0;
-            //     padding: 0;
-            //     font-size: 12px;
-            //     color: #999;
-            // }
-        }
-    }
-
-    .media {
-        ion-row, ion-col {
-            margin: 0;
-            padding: 0;
-        }
-        ion-card {
-            margin: 0;
-            width: 100%;
-            margin-top: 10px;
-            box-shadow: none;
-        }
-
-        .title, .view-count {
-            font-size: 14px;
-            color: #666;
-            padding: 5px 0;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        .view-count {
-            text-align: right;
-            padding-top: 7px;
-        }
-
-        .card-title {
-            font-size: 14px;
-            padding: 5px 0;
-        }
-
-        .media-left {
             padding-right: 5px;
         }
-
-        .media-right {
-            padding-left: 5px;
+        .label {
+            font-size: 12px;
         }
-    }
-
-    .performers {
-        ion-row,ion-col {
-            margin: 0;
-            padding: 0;
+    
+        .senting {
             text-align: center;
+            h1 {
+                font-size: 24px;
+            }
         }
 
-        // padding: px;
-        padding: 15px 0;
-
-        .performer {
-            padding: 10px;
-            h4,p {
-                margin: 0;
-                padding: 0;
-            }
-            img {
-                width: 60px;
-                height: 60px;
-
-                border-radius: 50%;
-            }
-            h4 {
-                font-size: 14px;
-                font-weight: normal;
-                color: #333;
-                margin-top: 10px;
-                margin-bottom: 5px;
-            }
-            p {
-                font-size: 12px;
-                color: #666;
-                margin-bottom: 10px;
-            }
-
-            .followed {
-                background: white;
-                color: color($colors, primary);
-                border: 0.55px solid color($colors, primary);
+        .salary-stat {
+            text-align: center;
+            margin-top: 12px;
+            h3 {
+                font-size: 18px;
+                // color:red;
             }
         }
     }
+
+    .toolbar-ios {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .segment-md .segment-button {
+        color: #666;
+        border-bottom-width: 0;
+        // padding-top: 1px;
+        &.segment-activated {
+            color: color($colors,primary);
+            border-bottom-width: 2px;
+        }
+    }
+
+    .salary-item {
+        .money {
+            font-size: 18px;
+            font-family: 'PingFang SC';
+            color: color($colors, primary);
+            margin-bottom: 5px;
+            .unit {
+                font-size: 12px;
+                padding-right: 3px;
+            }
+        }
+
+        .badge-ios {
+            padding: 4px 6px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 12px;
+            color: #666;
+        }
+        h2 {
+            font-size: 14px;
+            color: rgb(58,58,58);
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .state {
+            
+        }
+    }
+    
 }
