@@ -5,7 +5,9 @@ import { /*IonicPage,*/ NavController, NavParams, Content, App } from 'ionic-ang
 import { Users } from '../../provider/Users';
 import { Tools } from '../../provider/Tools';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
-import { Utils } from '../../provider/Utils';
+import { TabsPage } from '../tabs/tabs';
+import { SettingPage } from '../setting/setting';
+// import { Utils } from '../../provider/Utils';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,8 +23,17 @@ import { Utils } from '../../provider/Utils';
 })
 export class LoginPage {
 
-  // body: any = null;
-  isWeiXin: boolean = false;
+  user: any = {
+    mobile: '',
+    code: ''
+  };
+
+  codeBtnData: any = {
+    text: '获取验证码',
+    started: false,
+    timer: null,
+    seconds: 59,
+  };
 
   @ViewChild(Content) content: Content;
 
@@ -35,7 +46,7 @@ export class LoginPage {
     private iosFixed: iOSFixedScrollFreeze,
     private tools: Tools,
   ) {
-    this.isWeiXin = Utils.isWeiXin();
+
   }
 
   ionViewDidLoad() {
@@ -44,43 +55,64 @@ export class LoginPage {
     // this.loadUserAgreement();
   }
 
-  // loadUserAgreement() {
-  //   this.api.GET('p/user_agreement', null)
-  //     .then(result => {
-  //       // console.log(res);
-  //       let data = result['data'];
-
-  //       if (data && data.body) {
-  //         this.body = this.san.bypassSecurityTrustHtml(data.body);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
   doLogin() {
-    this.users.GetAuthUrl(window.location.href)
+    this.users.Login(this.user.mobile, this.user.code)
       .then(data => {
-        // console.log(data.data);
-        if (data && data.data) {
-          // console.log(window.location.href);
-          window.location.href = data.data.url;
-        } else {
-          this.tools.showToast('获取授权登录失败');
-        }
+        // console.log(data);
+        this.checkProfile();
       })
       .catch(error => {
-        // console.log(error);
-        this.tools.showToast('获取认证登录地址失败');
+        this.tools.showToast(error);
       });
   }
 
-  openPage() {
-    this.app.getRootNavs()[0].push('BrowserPage', {
-      title: '用户协议',
-      slug: 'user_agreement'
-    });
+  checkProfile() {
+    this.users.GetUserProfile()
+      .then(data => {
+        const profile = data['data'];
+        if (!profile.pid) {
+          this.app.getRootNavs()[0].setRoot('UserProfilePage');
+        } else {
+          this.app.getRootNavs()[0].setRoot(TabsPage);
+        };
+      })
+      .catch(error => {
+        this.tools.showToast(error.message || '服务器出错了');
+      });
+  }
+
+  getCode() {
+    if (this.codeBtnData.started) return;
+
+    this.users.GetCode(this.user.mobile)
+      .then(data => {
+        // console.log(data);
+        this.startTimer();
+      })
+      .catch(error => {
+        // console.log(error);
+        this.tools.showToast(error.message || '服务器出错了');
+      });
+  }
+
+  startTimer() {
+    this.codeBtnData.started = true;
+    this.codeBtnData.text = `${this.codeBtnData.seconds}秒后重新获取`;
+
+    if (!this.codeBtnData.timer) {
+      this.codeBtnData.timer = setInterval(() => {
+        this.codeBtnData.seconds -= 1;
+        if (this.codeBtnData.seconds <= 0) {
+          clearInterval(this.codeBtnData.timer);
+          this.codeBtnData.timer = null;
+          this.codeBtnData.started = false;
+          this.codeBtnData.seconds = 59;
+          this.codeBtnData.text = '获取验证码';
+        } else {
+          this.codeBtnData.text = `${this.codeBtnData.seconds}秒后重新获取`;
+        }
+      }, 1000);
+    }
   }
 
 }

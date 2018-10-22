@@ -60,6 +60,28 @@ export class Users {
         return this.storage.remove('token');
     }
 
+    Login(mobile, code) {
+        return new Promise((resolve, reject) => {
+            this.api.POST('account/login', { mobile: mobile, code: code })
+                .then(data => {
+                    // console.log(data);
+                    if (data && data['data']) {
+                        const token = data['data']['token'];
+                        this.saveToken(token)
+                            .then(res => {
+                                resolve(data['data']);
+                            });
+                    } else {
+                        reject('非法错误');
+                    }
+                })
+                .catch(error => {
+                    // console.log(error);
+                    reject(error.message || '服务器出错了');
+                });
+        });
+    }
+
     GetTrades(pageNo: number, pageSize: number = 20) {
         return new Promise((resolve, reject) => {
             this.token().then(token => {
@@ -75,5 +97,9 @@ export class Users {
             .catch(error => {});
             // 
         });
+    }
+
+    GetCode(mobile) {
+        return this.api.POST("auth_codes", { mobile: mobile });
     }
 }

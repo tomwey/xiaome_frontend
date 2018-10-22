@@ -23,7 +23,9 @@ export class MyApp {
     // private wechat: Wechat,
     splashScreen: SplashScreen) {
     
-      this.loginIfNeeded();
+      // this.loginIfNeeded();
+
+      this.rootPage = 'UserProfilePage';
       
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -37,12 +39,14 @@ export class MyApp {
 
   loginIfNeeded() {
     this.users.token().then(token => {
+      // console.log(token);
+      // console.log('###########');
       if (!token) {
         this.rootPage = LoginPage;
       } else {
-        this.rootPage = TabsPage;
+        this.rootPage = 'UserProfilePage';
       }
     })
   }
-  
+
 }

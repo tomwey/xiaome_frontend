@@ -1,0 +1,30 @@
+page-user-profile {
+    .card-ios {
+        .item-inner {
+            border-bottom: 0.55px solid #e6e6e6!important;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .item-input ion-label {
+            width: 58px;
+            font-size: 14px;
+            color: #666;
+        }
+        ion-label {
+            display: inline-block;
+            color: #666;
+            font-size: 16px;
+            width: 58px;
+        }
+
+        .select-box {
+            .select-item {
+                // margin-right: 10px;
+                color: #666;
+                font-size: 16px;
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the UserProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content>
+  <ion-card>
+    <ion-card-header style="text-align: center; font-size: 18px; color: rgb(18,18,18);">录入基本信息</ion-card-header>
+    <ion-item>
+      <ion-label>姓名 *</ion-label>
+      <ion-input [(ngModel)]="profile.name" placeholder="姓名 必填"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>身份证 *</ion-label>
+      <ion-input [(ngModel)]="profile.idcard" placeholder="身份证 必填"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>性别 *</ion-label>
+      <div class="select-box" item-right>
+        <span class="select-item" tappable (click)="profile.sex = '男'">
+          <ion-icon name="{{ profile.sex == '男' ? 'ios-radio-button-on-outline' : 'ios-radio-button-off-outline' }}"></ion-icon> 男</span>
+        &emsp;<span class="select-item" tappable (click)="profile.sex = '女'">
+          <ion-icon name="{{ profile.sex == '女' ? 'ios-radio-button-on-outline' : 'ios-radio-button-off-outline' }}"></ion-icon> 女</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>电话</ion-label>
+      <ion-input [(ngModel)]="profile.phone" placeholder="电话"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>生日</ion-label>
+      <ion-input [(ngModel)]="profile.birth" placeholder="生日"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>是否在校大学生</ion-label>
+      <ion-toggle [(ngModel)]="profile.is_stu"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="profile.is_stu == '1'">
+      <ion-label>学校</ion-label>
+      <ion-input [(ngModel)]="profile.college" placeholder="学校"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="profile.is_stu == '1'">
+      <ion-label>专业</ion-label>
+      <ion-input [(ngModel)]="profile.specialty" placeholder="专业"></ion-input>
+    </ion-item>
+    <div padding>
+      <button ion-button block>保存</button>
+    </div>
+  </ion-card>
+</ion-content>

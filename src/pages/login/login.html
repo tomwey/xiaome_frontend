@@ -13,21 +13,30 @@
   
   </ion-header> -->
   
-  <ion-content style="background: white;">
-    <!-- <ion-card *ngIf="body"> -->
-      <!-- <ion-card-header>
-        <p class="heading" text-wrap>使用协议</p>
-      </ion-card-header> -->
-      <!--<ion-card-body>-->
-      <!-- <div class="pages" [innerHTML]="body" padding></div> -->
-      <!--</ion-card-body>-->
-    <!-- </ion-card> -->
+  <ion-content style="background: rgb(247,247,247);">
     <div class="login-box">
-      <img src="assets/imgs/cys_logo.jpg">
-      <p class="slogan">爱生活，爱音乐</p>
+      <ion-card>
+        <ion-card-header class="slogan">小么兼职登录</ion-card-header>
+        <!-- <ion-list> -->
+            <ion-item class="custom-item">
+                <ion-label>手机号</ion-label>
+                <ion-input type="number" [(ngModel)]="user.mobile"
+                 pattern="[0-9]*" placeholder="输入手机号"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>验证码</ion-label>
+                <ion-input type="number" [(ngModel)]="user.code"
+                 pattern="[0-9]*" placeholder="输入验证码"></ion-input>
+                <button ion-button item-right (click)="getCode();" [disabled]="codeBtnData.started || !user.mobile">{{codeBtnData.text}}</button>
+              </ion-item>
+        <!-- </ion-list> -->
+        
+        <div padding>
+            <button ion-button block (click)="doLogin();" [disabled]="!user.mobile || !user.code">登录</button>
+          </div>
+      </ion-card>
       
-      <button ion-button block (click)="doLogin();">{{isWeiXin ? '微信登录' : 'QQ登录'}}</button>
-      <p class="user-agreements">登录即表示同意<span class="agreement" tappable (click)="openPage();">《用户使用协议》</span></p>
+      <!-- <p class="user-agreements">登录即表示同意<span class="agreement" tappable (click)="openPage();">《用户使用协议》</span></p> -->
     </div>
   
   </ion-content>
