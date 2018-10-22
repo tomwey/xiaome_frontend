@@ -51,6 +51,12 @@ export class AddSalaryPage {
   }
 
   commit() {
+    const reg = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+    if (!reg.test(this.salary.money)) {
+      this.tools.showToast('金额不正确');
+      return;
+    }
+    
     this.users.AddSalary(this.salary)
       .then(data => {
         this.viewCtrl.dismiss(1).catch();
