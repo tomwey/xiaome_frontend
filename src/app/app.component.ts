@@ -6,9 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { Users } from '../provider/Users';
-import { Utils } from '../provider/Utils';
-import { Tools } from '../provider/Tools';
-import { AppManager } from '../provider/AppManager';
+// import { Utils } from '../provider/Utils';
+// import { Tools } from '../provider/Tools';
+// import { AppManager } from '../provider/AppManager';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,14 +18,14 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar,
     private users: Users, 
-    private tools: Tools,
-    private appManager: AppManager,
+    // private tools: Tools,
+    // private appManager: AppManager,
     // private wechat: Wechat,
     splashScreen: SplashScreen) {
     
-      // this.loginIfNeeded();
+      this.loginIfNeeded();
 
-      this.rootPage = 'UserProfilePage';
+      // this.rootPage = 'UserProfilePage';
       
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -44,7 +44,7 @@ export class MyApp {
       if (!token) {
         this.rootPage = LoginPage;
       } else {
-        this.rootPage = 'UserProfilePage';
+        this.rootPage = TabsPage;
       }
     })
   }

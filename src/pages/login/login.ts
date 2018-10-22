@@ -6,7 +6,7 @@ import { Users } from '../../provider/Users';
 import { Tools } from '../../provider/Tools';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 import { TabsPage } from '../tabs/tabs';
-import { SettingPage } from '../setting/setting';
+// import { SettingPage } from '../setting/setting';
 // import { Utils } from '../../provider/Utils';
 
 /**

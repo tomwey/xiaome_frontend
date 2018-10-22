@@ -37,16 +37,16 @@
       <ion-label>是否在校大学生</ion-label>
       <ion-toggle [(ngModel)]="profile.is_stu"></ion-toggle>
     </ion-item>
-    <ion-item *ngIf="profile.is_stu == '1'">
+    <ion-item *ngIf="profile.is_stu">
       <ion-label>学校</ion-label>
       <ion-input [(ngModel)]="profile.college" placeholder="学校"></ion-input>
     </ion-item>
-    <ion-item *ngIf="profile.is_stu == '1'">
+    <ion-item *ngIf="profile.is_stu">
       <ion-label>专业</ion-label>
       <ion-input [(ngModel)]="profile.specialty" placeholder="专业"></ion-input>
     </ion-item>
     <div padding>
-      <button ion-button block>保存</button>
+      <button ion-button block (click)="save();">保存</button>
     </div>
   </ion-card>
 </ion-content>

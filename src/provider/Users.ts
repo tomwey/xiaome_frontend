@@ -56,6 +56,23 @@ export class Users {
         });
     }
 
+    SaveProfile(params) {
+        return new Promise((resolve, reject) => {
+            this.token().then(token => {
+                params['token'] = token;
+                this.api.POST('user/save_profile', params)
+                    .then(res => {
+                        resolve(res);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
+            .catch(error => {});
+            // 
+        });
+    }
+
     logout(): Promise<any> {
         return this.storage.remove('token');
     }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage,*/ NavController, NavParams, App, AlertController, Events, Content } from 'ionic-angular';
+import { /*IonicPage,*/ NavController, NavParams, Content } from 'ionic-angular';
 import { Users } from '../../provider/Users';
-import { LoginPage } from '../../pages/login/login';
+// import { LoginPage } from '../../pages/login/login';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 
 /**
@@ -25,11 +25,11 @@ export class SettingPage {
 
   constructor(public navCtrl: NavController, 
     private users: Users,
-    private app: App,
-    private events: Events,
+    // private app: App,
+    // private events: Events,
     private iosFixed: iOSFixedScrollFreeze,
     // private modalCtrl: ModalController,
-    private alertCtrl: AlertController,
+    // private alertCtrl: AlertController,
     public navParams: NavParams) {
   }
 
@@ -37,66 +37,79 @@ export class SettingPage {
 
     this.iosFixed.fixedScrollFreeze(this.content);
 
-    this.events.subscribe('user:reload', () => {
-      this.loadUserData();
-    });
+    // this.events.subscribe('user:reload', () => {
+    //   this.loadUserData();
+    // });
     // console.log('ionViewDidLoad SettingPage');
-    this.loadUserData();
+    this.loadUserProfile();
   }
 
-  logout() {
-    this.alertCtrl.create({
-      title: '退出登录',
-      subTitle: '您确定要退出登录吗？',
-      buttons: [
-        {
-          text: '取消',
-          role: 'Cancel',
-        },
-        {
-          text: '确定',
-          handler: () => {
-            this.doLogout();
-          }
-        }
-      ]
-    }).present();
-  }
-
-  doLogout() {
-    this.users.logout().then(() => {
-      // this.events.publish('user:logout');
-      setTimeout(() => {
-        this.app.getRootNavs()[0].setRoot(LoginPage);
-      }, 10);
-      
-    })
-    .catch(errror => {});
-  }
-
-  openZone(owner, dataType = null) {
-    this.app.getRootNavs()[0].push('OwnerZonePage', { owner: owner, type: 'user', dataType: dataType });
-  }
-
-  loadUserData() {
+  loadUserProfile() {
     this.users.GetUserProfile()
-      .then(res => {
-        this.user = res['data'];
+      .then(data => {
+        // console.log(data);
+        if (data && data['data']) {
+          this.user = data['data'];
+        }
       })
       .catch(error => {
-        this.error = error;
-      });
+        this.error = error.message || '服务器出错了~';
+      })
   }
 
-  gotoHistory() {
-    this.app.getRootNavs()[0].push('PlayHistoryPage');
-  }
+  // logout() {
+  //   this.alertCtrl.create({
+  //     title: '退出登录',
+  //     subTitle: '您确定要退出登录吗？',
+  //     buttons: [
+  //       {
+  //         text: '取消',
+  //         role: 'Cancel',
+  //       },
+  //       {
+  //         text: '确定',
+  //         handler: () => {
+  //           this.doLogout();
+  //         }
+  //       }
+  //     ]
+  //   }).present();
+  // }
 
-  openPage(title, slug) {
-    this.app.getRootNavs()[0].push('BrowserPage', {
-      title: title,
-      slug: slug
-    });
-  }
+  // doLogout() {
+  //   this.users.logout().then(() => {
+  //     // this.events.publish('user:logout');
+  //     setTimeout(() => {
+  //       this.app.getRootNavs()[0].setRoot(LoginPage);
+  //     }, 10);
+      
+  //   })
+  //   .catch(errror => {});
+  // }
+
+  // openZone(owner, dataType = null) {
+  //   this.app.getRootNavs()[0].push('OwnerZonePage', { owner: owner, type: 'user', dataType: dataType });
+  // }
+
+  // loadUserData() {
+  //   this.users.GetUserProfile()
+  //     .then(res => {
+  //       this.user = res['data'];
+  //     })
+  //     .catch(error => {
+  //       this.error = error;
+  //     });
+  // }
+
+  // gotoHistory() {
+  //   this.app.getRootNavs()[0].push('PlayHistoryPage');
+  // }
+
+  // openPage(title, slug) {
+  //   this.app.getRootNavs()[0].push('BrowserPage', {
+  //     title: title,
+  //     slug: slug
+  //   });
+  // }
 
 }
