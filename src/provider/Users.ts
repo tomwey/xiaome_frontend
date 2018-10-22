@@ -40,10 +40,43 @@ export class Users {
         return this.api.GET('u/auth', { url: url });
     }
 
+    GetProjects() {
+        return new Promise((resolve, reject) => {
+            this.token().then(token => {
+                this.api.GET('projects', { token: token })
+                    .then(res => {
+                        resolve(res);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
+            .catch(error => {});
+            // 
+        });
+    }
+
     GetUserProfile(showLoading = true, loadingText = '正在加载...') {
         return new Promise((resolve, reject) => {
             this.token().then(token => {
                 this.api.GET('user/me', { token: token }, loadingText, showLoading)
+                    .then(res => {
+                        resolve(res);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
+            .catch(error => {});
+            // 
+        });
+    }
+
+    AddSalary(params) {
+        return new Promise((resolve, reject) => {
+            this.token().then(token => {
+                params['token'] = token;
+                this.api.POST('salaries/create', params)
                     .then(res => {
                         resolve(res);
                     })

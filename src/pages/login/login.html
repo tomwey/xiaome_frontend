@@ -27,7 +27,7 @@
                 <ion-label>验证码</ion-label>
                 <ion-input type="number" [(ngModel)]="user.code"
                  pattern="[0-9]*" placeholder="输入验证码"></ion-input>
-                <button ion-button item-right (click)="getCode();" [disabled]="codeBtnData.started || !user.mobile">{{codeBtnData.text}}</button>
+                <button ion-button item-right clear style="font-size: 16px;" (click)="getCode();" [disabled]="codeBtnData.started || !user.mobile">{{codeBtnData.text}}</button>
               </ion-item>
         <!-- </ion-list> -->
         

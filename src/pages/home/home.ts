@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage, */NavController, NavParams, App, Content, ModalController } from 'ionic-angular';
-import { ApiService } from '../../provider/api-service';
+import { /*IonicPage, */NavController, NavParams, Content, ModalController } from 'ionic-angular';
+// import { ApiService } from '../../provider/api-service';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 import { Users } from '../../provider/Users';
-import { Tools } from '../../provider/Tools';
+// import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the HomePage page.
@@ -84,8 +84,14 @@ export class HomePage {
   }
 
   add() {
-    const modal = this.modalCtrl.create('AddSalaryPage');
+    const modal = this.modalCtrl.create('AddSalaryPage',
+      { pay_name: this.user.pay_name, pay_account: this.user.pay_account });
     modal.onDidDismiss(res => {
+      if (res) {
+        this.loadUserData();
+        this.dataType = '0';
+        this.loadSalariesData();
+      }
     });
     modal.present();
   }

@@ -17,7 +17,28 @@
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-card>
+    <button ion-item (click)="selectProject();">
+      <ion-label>兼职项目*</ion-label>
+      <ion-note item-right>
+        <p text-wrap class="project-name">{{salary.project_name || '请选择'}}</p>
+      </ion-note>
+    </button>
+    <ion-item>
+      <ion-label>工资金额*</ion-label>
+      <ion-input type="number" [(ngModel)]="salary.money" placeholder="输入工资金额，单位元"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>支付宝姓名*</ion-label>
+        <ion-input [(ngModel)]="salary.pay_name" placeholder="支付宝实名认证姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>支付宝账号*</ion-label>
+      <ion-input [(ngModel)]="salary.pay_account" placeholder="支付宝账号"></ion-input>
+  </ion-item>
+  <div padding>
+    <button ion-button block (click)="commit();" [disabled]="!salary.proj_id || !salary.money || !salary.pay_name || !salary.pay_account">提交</button>
+  </div>
+  </ion-card>
 </ion-content>
