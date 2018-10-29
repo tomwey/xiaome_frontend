@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angular';
+import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 
 /**
  * Generated class for the SelectTimesPage page.
@@ -21,19 +22,19 @@ export class SelectTimesPage {
   originData: any = [];
   keyword: any = '';
 
+  @ViewChild(Content) content: Content;
+
   constructor(public navCtrl: NavController, 
     private events: Events,
+    private iosFixed: iOSFixedScrollFreeze,
     public navParams: NavParams) {
     let arr = this.navParams.data.times || [];
     this.selectedItems = this.navParams.data.selectedItems || [];
 
     let temp = [];
-    let sum = 0;
+    // let sum = 0;
     arr.forEach(element => {
       const isChecked = this.selectedItems.indexOf(element) != -1;
-      if (isChecked) {
-        sum ++;
-      }
       temp.push(
         {
           label: element,
@@ -49,6 +50,7 @@ export class SelectTimesPage {
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad SelectTimesPage');
+    this.iosFixed.fixedScrollFreeze(this.content);
   }
 
   startSearch(kw) {
