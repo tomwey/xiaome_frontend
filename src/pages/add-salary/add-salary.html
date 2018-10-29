@@ -42,8 +42,8 @@
           {{selectedTimes.length == 0 ? '请选择' : selectedTimes.join(',')}}
         </p> -->
         <span *ngIf="selectedTimes.length == 0">请选择</span>
-        <button ion-button *ngFor="let time of selectedTimes" small color="light" (click)="removeMe(time,$event);">
-          {{time}}&nbsp;<ion-icon name="ios-close-outline"></ion-icon>
+        <button ion-button *ngFor="let time of selectedTimes" small color="light-gray" [disabled]="true">
+          {{time}}
         </button>
         
       </ion-note>

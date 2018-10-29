@@ -57,7 +57,7 @@ export class AddSalaryPage {
       
     });
     this.events.subscribe('times:select', (items) => {
-      this.selectedTimes = items;
+      this.selectedTimes = items.sort();
     });
   }
 

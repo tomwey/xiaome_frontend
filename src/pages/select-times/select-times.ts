@@ -28,11 +28,16 @@ export class SelectTimesPage {
     this.selectedItems = this.navParams.data.selectedItems || [];
 
     let temp = [];
+    let sum = 0;
     arr.forEach(element => {
+      const isChecked = this.selectedItems.indexOf(element) != -1;
+      if (isChecked) {
+        sum ++;
+      }
       temp.push(
         {
           label: element,
-          checked: this.selectedItems.indexOf(element) != -1
+          checked: isChecked
         }
       );
     });
@@ -62,7 +67,8 @@ export class SelectTimesPage {
     this.navCtrl.pop();
   }
 
-  cbChange(item) {
+  cbChange(item,ev) {
+    // console.log(11111);
     const index = this.selectedItems.indexOf(item.label);
     if (index == -1) {
       this.selectedItems.push(item.label);

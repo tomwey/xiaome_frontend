@@ -34,6 +34,10 @@
 
 <ion-content>
   <ion-list>
+    <!-- <ion-item>
+      <ion-label>全选</ion-label>
+      <ion-checkbox [checked]="allSelected" (ionChange)="selectAll($event)"></ion-checkbox>
+    </ion-item> -->
     <ion-item *ngFor="let time of times">
       <ion-label>{{time.label}}</ion-label>
       <ion-checkbox [(ngModel)]="time.checked" (ionChange)="cbChange(time);"></ion-checkbox>
