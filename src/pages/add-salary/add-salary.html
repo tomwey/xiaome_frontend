@@ -25,6 +25,29 @@
         <p text-wrap class="project-name">{{salary.project_name || '请选择'}}</p>
       </ion-note>
     </button>
+    <!-- <ion-item *ngIf="!!currentProject">
+      <ion-label>结算日期*</ion-label>
+      <div item-right class="checkbox-items">
+        <ion-row>
+          <ion-col col-6 *ngFor="let day of currentProject.days">
+            <button ion-button block>{{day}}</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item> -->
+    <button ion-item (click)="selectSettleTimes();" *ngIf="!!currentProject">
+      <ion-label>结算日期*</ion-label>
+      <ion-note item-right class="right-box">
+        <!-- <p text-wrap class="settle-times">
+          {{selectedTimes.length == 0 ? '请选择' : selectedTimes.join(',')}}
+        </p> -->
+        <span *ngIf="selectedTimes.length == 0">请选择</span>
+        <button ion-button *ngFor="let time of selectedTimes" small color="light" (click)="removeMe(time,$event);">
+          {{time}}&nbsp;<ion-icon name="ios-close-outline"></ion-icon>
+        </button>
+        
+      </ion-note>
+    </button>
     <ion-item>
       <ion-label>工资金额*</ion-label>
       <ion-input type="number" [(ngModel)]="salary.money" placeholder="输入工资金额，单位元"></ion-input>

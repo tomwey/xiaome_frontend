@@ -29,4 +29,45 @@ page-add-salary {
         // }
         
     }
+
+    // .checkbox-items {
+    //     width: calc(100% - 90px);
+    //     padding-left: 28px;
+    //     font-size: 12px;
+    //     color: #666;
+    // }
+    .controls-table {
+        width: 100%;
+        // padding: 10px;
+        table-layout: fixed;
+        
+        .control-label {
+            padding: 10px 15px;
+            padding-right: 0;
+            // padding-top: 5px;
+            font-size: 14px;
+            width: 88px;
+            vertical-align: top;
+            color: #666;
+        }
+        .control-items {
+            vertical-align: top;
+            color: #666;
+            padding: 10px 15px;
+            padding-top: 5px;
+            padding-left: 30px;
+            button {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .right-box {
+        display: block;
+        width: calc(100% - 90px);
+        text-align: right;
+        button {
+            font-size: 12px;
+        }
+    }
 }
